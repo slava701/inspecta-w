@@ -1,0 +1,986 @@
+.picker-wrapper {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    background-color: var(--in-color-bg-1);
+    border: 1px solid var(--in-color-divider);
+    border-radius: 16px;
+    font-family: inter, sans-serif;
+}
+
+.picker-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 240px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.picker-tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+
+}
+
+.picker-tab {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 0 6px;
+    border-radius: 6px;
+    color: var(--in-color-text-1);
+}
+
+.picker-tab:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.picker-tab.active {
+    background-color: var(--in-color-bg-2);
+    color: var(--in-color-text-1);
+    font-weight: 500;
+}
+
+.picker-close-btn,
+.floating-picker-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.picker-close-btn:hover,
+.floating-picker-close-btn:hover {
+    color: var(--in-color-text-1);
+    background-color: var(--in-color-bg-2);
+}
+
+.picker-options {
+    display: flex;
+    gap: 4px;
+    height: 40px;
+    box-sizing: border-box;
+    align-items: center;
+    width: 240px;
+    padding: 0px 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--in-color-divider);
+    border-top: 1px solid var(--in-color-divider);
+}
+
+/* Standard action icon pattern for picker options */
+.picker-options .action-icon {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--in-color-text-2);
+    transition: all 0.2s ease;
+}
+
+.picker-options .action-icon:hover {
+    background-color: var(--in-color-bg-2);
+    color: var(--in-color-text-1);
+}
+
+.picker-options .action-icon.active {
+    background-color: var(--in-action-selected);
+    color: var(--active);
+}
+
+#colorPicker {
+    margin: 0;
+}
+
+
+
+.eye-dropper-btn {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.eye-dropper-btn:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+
+.color-sliders-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.sliders-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+#hueSlider,
+#alphaSlider {
+    margin: 0;
+
+}
+
+.controls-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    margin: 16px 0px;
+    justify-content: center;
+    width: 208px;
+    box-sizing: border-box;
+}
+
+.format-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.format-dropdown {
+    color: var(--in-color-text-1);
+    font-size: 11px;
+    padding: 2px 4px 2px 6px;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: var(--in-color-bg-2);
+    height: 28px;
+    border: none;
+    font-family: 'Inter';
+    outline: none;
+    box-shadow: none;
+    line-height: normal;
+    width: 52px;
+    cursor: pointer;
+    box-sizing: border-box;
+    /* Remove native arrow and add custom one */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+}
+
+.format-dropdown:hover {
+    background-color: var(--in-color-mid-1);
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.format-dropdown:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Select wrapper styling for color picker format dropdown */
+.format-picker .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 52px;
+}
+
+.format-picker .select-wrapper .format-dropdown {
+    flex: 1;
+    padding-right: 24px;
+    /* Make room for the arrow */
+}
+
+.format-picker .select-arrow {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--in-color-text-2);
+    pointer-events: none;
+}
+
+/* Arrow rotation for open state - will be controlled by JavaScript */
+.format-dropdown.open+.select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+#gradientType {
+    color: var(--in-color-text-1);
+    font-size: 11px;
+    padding: 2px 6px 2px 8px;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: var(--in-color-bg-2);
+    height: 28px;
+    border: none;
+    font-family: 'Inter';
+    outline: none;
+    box-shadow: none;
+    line-height: normal;
+    width: 72px;
+    cursor: pointer;
+    box-sizing: border-box;
+    /* Remove native arrow and add custom one */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+}
+
+#gradientType:hover {
+    background-color: var(--in-color-mid-1);
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 2px 6px 2px 8px;
+}
+
+#gradientType:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Select wrapper styling for gradient type dropdown */
+.gradient-picker-header .select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 72px;
+}
+
+.gradient-picker-header .select-wrapper #gradientType {
+    flex: 1;
+    padding-right: 24px;
+    /* Make room for the arrow */
+}
+
+.gradient-picker-header .select-arrow {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--in-color-text-2);
+    pointer-events: none;
+}
+
+/* Arrow rotation for open state - will be controlled by JavaScript */
+#gradientType.open+.select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.color-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+}
+
+.color-inputs .input-group {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+}
+
+.color-inputs .input-group:last-child .color-input {
+    width: 48px;
+}
+
+.color-inputs .input-group:not(:last-child) {
+    flex: 1;
+}
+
+.color-inputs .input-group:not(:last-child) .color-input {
+    width: 100%;
+}
+
+/* Border radius for 3-input groups */
+.color-inputs .input-group:not(:last-child) .color-input:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.color-inputs .input-group:not(:last-child) .color-input:nth-child(2) {
+    border-radius: 0;
+}
+
+.color-inputs .input-group:not(:last-child) .color-input:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+/* Full border radius for single hex input */
+.color-inputs .input-group:not(:last-child):has(.color-input:only-child) .color-input {
+    border-radius: 4px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--in-color-text-1);
+}
+
+.color-input {
+    padding: 2px 6px;
+    border: none;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: inter, sans-serif;
+    background: var(--in-color-bg-2);
+    color: var(--in-color-text-1);
+    cursor: text;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+    height: 28px;
+}
+
+.color-input.valid {
+    border-color: var(--in-color-success);
+    background: var(--in-bg-success);
+}
+
+.color-input.invalid {
+    border-color: var(--in-color-error);
+    background: var(--in-bg-error);
+}
+
+#selectedColor {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--in-color-text-1);
+}
+
+.mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mode-toggle button.active {
+    background: var(--in-color-bg-2);
+    color: var(--in-color-text-1);
+}
+
+#gradientPickerWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+
+}
+
+.gradient-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 240px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+.gradient-picker-header-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.gradient-picker-header-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.gradient-picker-header-actions button:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.gradient-bar-wrapper {
+    position: relative;
+    width: 208px;
+    height: 32px;
+    margin-bottom: 16px;
+}
+
+#gradientCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid var(--in-color-divider);
+    background: var(--in-color-bg-2);
+}
+
+.stops-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 208px;
+    margin-bottom: 8px;
+    color: var(--in-color-text-1);
+}
+
+.stops-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+    z-index: 2;
+}
+
+.stop-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--in-color-text-1);
+    background: var(--in-color-bg-1);
+    cursor: pointer;
+    z-index: 2;
+}
+
+#stopsList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 240px;
+    max-height: 184px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.stop-row {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 16px;
+}
+
+.stop-row:hover {
+    background-color: var(--in-color-mid-1);
+}
+
+.stop-row.active {
+    background-color: var(--in-bg-selected);
+}
+
+.stop-row input[type="number"] {
+    width: 48px;
+}
+
+.stop-row input[type="color"] {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.stop-row input[type="range"] {
+    width: 60px;
+}
+
+#addStopBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+#addStopBtn:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.stop-row .remove-stop {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.stop-row .remove-stop:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.stop-marker {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.stop-marker-square {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 3px solid var(--in-color-divider);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: var(--stop-color, var(--in-color-bg-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stop-marker.active .stop-marker-square {
+    border-color: var(--in-color-focus);
+    box-shadow: 0 1px 1px var(--in-color-focus);
+}
+
+.stop-marker-pointer {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--in-color-divider);
+    margin-top: -1px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.10));
+}
+
+.stop-marker.active .stop-marker-pointer {
+    border-top-color: var(--in-color-focus);
+    filter: drop-shadow(0 1px 2px var(--in-color-focus));
+}
+
+.stop-row input.color-input {
+    width: 47px;
+    margin-right: 4px;
+}
+
+.stop-row .stop-color-preview {
+    min-width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--in-color-divider);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.stop-row .stop-hex-input {
+    width: 96px;
+}
+
+.stop-row .stop-opacity-input {
+    width: 44px;
+}
+
+.input-percent-group {
+    position: relative;
+    display: inline-block;
+}
+
+.input-percent-group .color-input {
+    padding-right: 18px;
+    box-sizing: border-box;
+}
+
+.input-percent-suffix {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--in-color-text-1);
+    font-size: 11px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.input-color-preview-group {
+    position: relative;
+    display: inline-block;
+}
+
+.input-color-preview-group .color-input {
+    padding-left: 26px;
+}
+
+.stop-row .stop-color-preview {
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--in-color-divider);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+
+
+.stop-row .input-color-preview-group .hex-input-with-preview {
+    width: 78px;
+}
+
+.IroBox {
+    border-radius: 8px !important;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid var(--in-color-divider) !important;
+    border: none !important;
+}
+
+/* Floating Picker Styles */
+.floating-picker-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 240px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.floating-picker-tabs {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+
+
+#floatingColorPicker {
+    position: fixed !important;
+    z-index: 9999 !important;
+    background: var(--in-color-bg-1);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    min-width: 240px;
+    max-width: 240px;
+    width: 240px;
+    transform: none !important;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-family: inter, sans-serif;
+}
+
+#floatingColorPicker #solidPickerWrapper {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--in-color-divider);
+}
+
+/* Hide solidPickerWrapper when Figma tab is active */
+#floatingColorPicker.figma-tab-active #solidPickerWrapper {
+    display: none !important;
+}
+
+/* SVG icon theme support */
+.picker-wrapper svg,
+#floatingColorPicker svg {
+    fill: var(--in-color-fill);
+}
+
+.picker-wrapper svg:hover,
+#floatingColorPicker svg:hover {
+    fill: var(--in-color-txt);
+}
+
+/* Page Colors Section */
+.page-colors-section {
+    width: 240px;
+    padding: 4px 16px 16px 16px;
+    border-top: 1px solid var(--in-color-divider);
+}
+
+.page-colors-header {
+    margin-bottom: 6px;
+}
+
+.page-colors-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--in-color-text-1);
+}
+
+.page-colors-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    column-gap: 4px;
+    row-gap: 4px;
+    width: 100%;
+    max-height: 56px;
+    /* Exactly 3 rows: 3 * 16px + 2 * 4px gaps = 48px + 8px = 56px */
+    overflow-y: hidden;
+    /* Default to hidden, JavaScript will control this */
+}
+
+.page-color-thumbnail {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* Figma Colors Section */
+.figma-colors-section {
+    width: 240px;
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--in-color-divider);
+}
+
+
+
+.figma-colors-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+}
+
+.figma-color-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.figma-color-item:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.figma-color-thumbnail {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--in-color-divider);
+    flex-shrink: 0;
+}
+
+.figma-color-hex {
+    font-size: 11px;
+    color: var(--in-color-text-1);
+}
+
+/* Image Picker Styles */
+.image-picker-content {
+    padding: 16px;
+    padding-top: 0;
+}
+
+.image-preview-container {
+    margin-bottom: 16px;
+}
+
+.image-preview {
+    width: 208px;
+    height: 120px;
+    border: 1px solid var(--in-color-divider);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--in-color-bg-1);
+}
+
+.image-preview-checkerboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(45deg, #eee 25%, transparent 25%),
+        linear-gradient(-45deg, #eee 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #eee 75%),
+        linear-gradient(-45deg, transparent 75%, #eee 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+.image-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.image-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 8px;
+    border: 1px solid var(--in-color-divider);
+    border-radius: 6px;
+    background-color: var(--in-color-bg-1);
+    color: var(--in-color-text-1);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.image-btn:hover {
+    background-color: var(--in-color-bg-2);
+    border-color: var(--in-color-text-2);
+}
+
+.image-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.image-btn-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.image-delete-btn {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background-color: var(--in-color-bg-1);
+    border: 1px solid var(--in-color-divider);
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 15;
+    cursor: pointer;
+}
+
+.image-delete-btn:hover {
+    background-color: var(--in-color-bg-2);
+}
+
+.image-delete-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--in-color-text-1);
+}
+
+.hide-delete-image {
+    display: none !important;
+}
+
+.image-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.setting-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.setting-group label {
+    font-size: 11px;
+    color: var(--in-color-text-1);
+    font-weight: 500;
+}
+
+.setting-group select {
+    color: var(--in-color-text-1);
+    font-size: 11px;
+    padding: 2px 2px;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: var(--in-color-bg-2);
+    height: 28px;
+    border: none;
+    border-right: 6px solid var(--in-color-bg-2);
+    font-family: 'Inter';
+    outline: none;
+    box-shadow: none;
+    line-height: normal;
+    width: 140px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.setting-group select:hover {
+    background-color: var(--in-color-mid-1);
+    outline: none !important;
+    border-right: 6px solid var(--in-color-mid-1);
+    box-shadow: none !important;
+    padding: 2px 2px;
+}
+
+.setting-group select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

@@ -1,0 +1,55 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "manifest_version": 3,
+    "name": "Inspecta - visual QA and CSS editor",
+    "description": "Inspect, compare and update CSS visually",
+    "version": "0.3.4",
+    "icons": {
+        "16": "logo/logo-16.png",
+        "32": "logo/logo-32.png",
+        "48": "logo/logo-48.png",
+        "128": "logo/logo-128.png"
+    },
+    "action": {
+        "default_title": "Inspecta"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage",
+        "clipboardRead"
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "commands": {
+        "Ctrl+M": {
+            "suggested_key": {
+                "default": "Ctrl+M",
+                "mac": "Command+M"
+            },
+            "description": "Ctrl+M."
+        }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "test.html",
+                "index.html",
+                "svgs.html",
+                "js/*",
+                "css/*",
+                "assets/figma-plugin-hint.png",
+                "assets/figma-plugin-font-hint.png",
+                "assets/cursor_dialog_header.png"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; object-src 'self'; script-src-elem 'self' 'unsafe-inline'"
+    }
+}

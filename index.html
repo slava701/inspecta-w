@@ -1,0 +1,2166 @@
+<!---------------------------------------------  rulers --------------------------------------------->
+<div id="rulers">
+    <div id="rulerX"></div>
+    <div id="rulerY"></div>
+</div>
+<!---------------------------------------------  eye dropper ---------------------------------------->
+<div id="eye_dropper_result_bg">
+    <div id="eye_dropper_result_thumb"></div>
+    <div id="eye_dropper_result"></div>
+    <div id="eye_dropper_copy">Copied</div>
+    <div id="btn_close_eye_dropper" class="action_icon">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_close"></use>
+        </svg>
+    </div>
+</div>
+<!---------------------------------------------  main side pnl:  overview + properties + changes ---->
+<div id="pnl_properties" spellcheck="false">
+
+    <div id="window_bar">
+        <div class="actions_left">
+            <svg class="icon-16 icon-fill">
+                <use href="#ic_drag-dots"></use>
+            </svg>
+            <div class="flex-h-sb gap-s">
+                <div>Show changes</div>
+                <label class="custom-switch">
+                    <input type="checkbox" id="apply_css_changes">
+                    <span class="in_slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="actions_right">
+            <div class="action_icon " id="btn_properties_position">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_pnl_right"></use>
+                </svg>
+            </div>
+            <div id="btn_close_properties_pnl" class="action_icon">
+                <svg class="icon-16 icon-fill minimize-icon">
+                    <use href="#ic_minimize"></use>
+                </svg>
+                <svg class="icon-16 icon-fill maximize-icon" style="display: none;">
+                    <use href="#ic_maximize"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------- pnl properties content --------------------------------------------->
+    <div id="pnl_properties_content">
+        <div class="pnl_properties_toolbar">
+            <div class="pnl_header">
+                <div class="pnl_name">
+                    <div id="pnl_title">Overview</div>
+                </div>
+            </div>
+            <div class="flex-h-sb">
+                <div class="action_icon" id="btn_back">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_left"></use>
+                    </svg>
+                </div>
+                <div id="el_name">
+                    pagename
+                </div>
+            </div>
+            <div class="up_down" id="pnl_element_selection_arrows" style="display: none;">
+                <div class="btn_chevron" id="el_up">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_up"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron" id="el_down">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_down"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron" id="el_left">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_left"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron" id="el_right">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_right"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="action_icon" id="btn_toggle_pnl_items">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_expand_all"></use>
+                </svg>
+            </div>
+            <!-- <div class="flex-h-sb">
+                <div class="item_label">State</div>
+                <div class="selection_dd">
+                    <div class="item_actions">Default</div>
+                    <svg class="icon-16 icon-fill">
+                        <use  href="#ic_dd"></use>
+                    </svg>
+                </div>
+            </div> -->
+        </div>
+        <div class="divider_horizontal"></div>
+        <div class="properties_list" data-simplebar>
+            <div id="inspect_hint">
+                <svg class="icon-36">
+                    <use href="#ic_hint"></use>
+                </svg>
+                <span>Click any element to edit it's properties</span>
+            </div>
+
+            <!---------------------------------------------overview --------------------------------------------->
+            <div id="pnl-overview" data-simplebar>
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_colors_header">
+                        <div class="item_label">Colors</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div class="figma-compare" id="figma_compare_colors_panel">
+                        <div class="compare-hint">
+                            <div class="compare-hint-title" id="figma_compare_hint_icon">
+                                <span>Validate implemented colors</span>
+                                <svg class="icon-16 icon-fill">
+                                    <use href="#ic_info"></use>
+                                </svg>
+                            </div>
+
+                            <div class="compare-hint-content" id="figma_compare_hint_popup">
+                                <img id="compare_hint_content_image"
+                                    src="chrome-extension://__MSG_@@extension_id__/assets/figma-plugin-hint.png"
+                                    alt="Figma Plugin Hint" style="width:100%;" />
+                                <!-- <img src="assets/figma-plugin-hint.png" alt="Figma Plugin Hint" /> -->
+                                <p>Open the Figma to inspecta plugin and click 'Copy page colors'</p>
+                                <p>Once styles are copied, click 'Paste & compare Figma colors'</p>
+                            </div>
+                        </div>
+                        <button class="btn_large" id="btn_compare_colors_from_figma">
+                            <svg class="icon-16">
+                                <use href="#ic_figma"></use>
+                            </svg>
+                            Paste & compare Figma colors</button>
+                    </div>
+                    <div class="item_values" id="pnl_colors_values">
+                        <div class="color-groups">
+                            <div class="color-group">
+                                <div class="pnl_item_sub_header flex-h-sb" id="pnl_page_colors_header">
+                                    <div class="group-title">Page colors</div>
+
+                                </div>
+                                <div class="thumbnail-container" id="colors-pallet-page-colors">
+                                </div>
+                            </div>
+                            <div class="color-group">
+                                <div class="pnl_item_sub_header" id="pnl_bg_colors_header">
+                                    <svg class="icon-16 icon-fill expand-side">
+                                        <use href="#ic_chevron_right"></use>
+                                    </svg>
+                                    <div class="group-title">Background colors</div>
+                                </div>
+                                <div class="thumbnail-container" id="pnl_bg_colors_values" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="color-group">
+                                <div class="pnl_item_sub_header" id="pnl_text_colors_header">
+                                    <svg class="icon-16 icon-fill expand-side">
+                                        <use href="#ic_chevron_right"></use>
+                                    </svg>
+                                    <div class="group-title">Text colors</div>
+                                </div>
+                                <div class="thumbnail-container" id="pnl_text_colors_values" style="display: none;">
+                                </div>
+                            </div>
+                            <div class="color-group">
+                                <div class="pnl_item_sub_header" id="pnl_border_colors_header">
+                                    <svg class="icon-16 icon-fill expand-side">
+                                        <use href="#ic_chevron_right"></use>
+                                    </svg>
+                                    <div class="group-title">Border colors</div>
+                                </div>
+                                <div class="thumbnail-container" id="pnl_border_colors_values" style="display: none;">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--------------------------------------------- Fonts --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_fonts_header">
+                        <div class="item_label">Fonts</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+
+
+
+                    <div class="figma-compare" id="figma_compare_fonts_panel">
+                        <div class="compare-hint">
+                            <div class="compare-hint-title" id="figma_compare_fonts_hint_icon">
+                                <span>Validate implemented fonts</span>
+                                <svg class="icon-16 icon-fill">
+                                    <use href="#ic_info"></use>
+                                </svg>
+                            </div>
+
+                            <div class="compare-hint-content" id="figma_compare_fonts_hint_popup">
+                                <img id="compare_fonts_hint_content_image"
+                                    src="chrome-extension://__MSG_@@extension_id__/assets/figma-plugin-font-hint.png"
+                                    alt="Figma Plugin Hint" style="width:100%;" />
+                                <!-- <img src="assets/figma-plugin-hint.png" alt="Figma Plugin Hint" /> -->
+                                <p>Open the Figma to inspecta plugin and click 'Copy page fonts'</p>
+                                <p>Once styles are copied, click 'Paste & compare Figma fonts'</p>
+                            </div>
+                        </div>
+                        <button class="btn_large" id="btn_compare_fonts_from_figma">
+                            <svg class="icon-16">
+                                <use href="#ic_figma"></use>
+                            </svg>
+                            Paste & compare Figma fonts</button>
+                    </div>
+                    <div class="item_values" id="pnl_fonts_values">
+                        <div class="font-groups" id="pnl_fonts_groups">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!---------------------------------------------properties --------------------------------------------->
+            <div id="pnl-elements">
+                <!---------------------------------------------text edit panel --------------------------------------------->
+                <div class="pnl_item" id="text-edit">
+                    <div class="pnl_item_header" id="pnl_text_edit_header">
+                        <div class="item_label">Text content</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div class="item_values" id="pnl_text_edit_values">
+                        <div class="property_item">
+                            <textarea id="text_edit_textarea" class="text-edit-textarea"></textarea>
+                        </div>
+                        <div class="text-edit-actions">
+                            <button type="button" class="btn_medium btn_secondary" id="text_edit_reset">Reset</button>
+                            <!-- <button type="button" class="btn_medium btn_secondary" id="text_edit_clear_all">Clear All
+                                Text Changes</button> -->
+                            <button type="button" class="btn_medium btn_secondary" id="text_edit_copy_prompt">
+                                <svg class="icon-16 icon-fill" style="pointer-events:none">
+                                    <use href="#ic_ai"></use>
+                                </svg>
+                            </button>
+                            <button type="button" class="btn_medium btn_secondary" id="text_edit_send_cursor">
+                                <svg class="icon-16 icon-fill" style="pointer-events:none">
+                                    <use href="#ic_cursor"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comapre-el-field" id="btn_paste_css_props_panel" style="display: none;">
+                    <div id="figma_element_label">Paste CSS from Figma</div>
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_paste_img"></use>
+                    </svg>
+                </div>
+
+                <div class="pnl_item" id="selected_img">
+                    <div class="pnl_item_header" id="pnl_img_header">
+                        <div class="item_label">IMG</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div class="item_values" id="pnl_img_values">
+                        <img src="" alt="Placeholder image" id="img_preview">
+                        <div class="img_info sb">
+                            <div class="img_info_item_value"></div>
+
+                            <div class="img_info_item_actions ">
+
+                                <div class="action_icon" id="in_img_upload">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_upload_img"></use>
+                                    </svg>
+                                </div>
+                                <div class="action_icon" id="in_img_paste">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_paste_img"></use>
+                                    </svg>
+                                </div>
+
+                                <div class="action_icon" id="in_img_download">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_export"></use>
+                                    </svg>
+                                </div>
+                                <div class="action_icon" id="in_img_delete">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_delete"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <select name="in_object_fit_select" id="in_object_fit_select" class="select-box">
+                            <option value="auto">Auto (Webpage Default)</option>
+                            <option value="fill">Fill</option>
+                            <option value="cover">Cover</option>
+                            <option value="contain">Contain</option>
+                            <option value="none">None</option>
+                            <option value="scale-down">Scale Down</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pnl_item" id="selected_svg">
+                    <div class="pnl_item_header" id="pnl_svg_header">
+                        <div class="item_label">SVG</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div class="item_values" id="pnl_svg_values">
+                        <div class="svg_preview_container">
+                            <div id="svg_preview"></div>
+                        </div>
+                        <div class="svg_info sb">
+                            <div class="svg_info_item_value"></div>
+                            <div class="svg_info_item_actions">
+                                <div class="action_icon" id="in_svg_upload" title="Upload SVG file">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_upload_img"></use>
+                                    </svg>
+                                </div>
+                                <div class="action_icon" id="in_svg_paste" title="Paste inline SVG code">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_paste_img"></use>
+                                    </svg>
+                                </div>
+                                <div class="action_icon" id="in_svg_download" title="Download SVG as HTML">
+                                    <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                        <use href="#ic_export"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="svg_code_container" style="position: relative;">
+                            <textarea id="svg_code" class="svg-code-textarea"
+                                placeholder="SVG code will appear here..."></textarea>
+                            <div class="action_icon svg-code-copy-abs" id="svg_code_copy_abs" title="Copy SVG code"
+                                style="position: absolute; top: 2px; right: 2px; cursor: pointer;">
+                                <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                    <use href="#ic_clipboard"></use>
+                                </svg>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--------------------------------------------- pnl display --------------------------------------------->
+
+                <div class="pnl_item" id="display">
+                    <div class="pnl_item_header" id="pnl_display_header">
+                        <div class="item_label">Layout</div>
+
+                        <div class="flex-h-sb gap-m">
+
+                            <svg class="icon-16 icon-fill expand">
+                                <use href="#ic_chevron_down"></use>
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div id="pnl_display_values">
+                        <div class="item_values ">
+                            <div class="property_item_vertical sb">
+                                <div class="flex-h-sb">
+                                    <div class="property_label">Display</div>
+                                    <div class="property_label_value" id="in_dis_current"></div>
+                                </div>
+                                <div class="radio-group">
+                                    <div class="action_icon_radio" id="in_dis_block">
+                                        <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_block"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_dis_flex">
+                                        <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_flex"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_dis_grid">
+                                        <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_grid"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_dis_inline-block">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_inline_block"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_dis_inline">
+                                        <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_inline"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_dis_none">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_display_none"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="flex-settings">
+
+                            <div class="flex-settings-header-container item_values  ">
+                                <div class="divider_horizontal"></div>
+                                <div class="property_label">Flex-setings</div>
+                                <div class="divider_horizontal"></div>
+                            </div>
+
+                            <!--  flex-direction -->
+                            <div class="item_values" id="pnl_flex_direction_values">
+                                <div class="property_item_vertical sb">
+                                    <div class="property_label">Direction</div>
+                                    <div class="radio-group">
+                                        <div class="action_icon_radio" id="in_flex_dir_row">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_row"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="action_icon_radio" id="in_flex_dir_column">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_col"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="action_icon_radio" id="in_flex_dir_row-reverse">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_row_rev"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="action_icon_radio" id="in_flex_dir_column-reverse">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_col_rev"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-row-setting  -->
+                            <div id="pnl_flex_dir_settings_row" style="display: none;">
+                                <div class="item_values" id="pnl_flex_align_row">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Align</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_align_items_row_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_start_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_center_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_end_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row_stretch">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_stretch_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row_baseline">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_baseline_row"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_values" id="pnl_flex_justify_row">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Justify</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_justify_content_row_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_start_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_center_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_end_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row_space-around">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_around_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row_space-between">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_between_row"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row_space-evenly">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_evenly_row"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-row-rev-setting  -->
+                            <div id="pnl_flex_dir_settings_row-reverse" style="display: none;">
+                                <div class="item_values" id="pnl_flex_align_row_rev">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Align</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_align_items_row-reverse_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_start_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row-reverse_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_center_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row-reverse_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_end_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row-reverse_stretch">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_stretch_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_row-reverse_baseline">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_baseline_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_values" id="pnl_flex_justify_row_rev">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Justify</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_justify_content_row-reverse_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_start_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row-reverse_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_center_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_row-reverse_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_end_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_row-reverse_space-around">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_around_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_row-reverse_space-between">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_between_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_row-reverse_space-evenly">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_evenly_row_reverse"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-column-setting  -->
+                            <div id="pnl_flex_dir_settings_column" style="display: none;">
+                                <div class="item_values" id="pnl_flex_align_column">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Align</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_align_items_column_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_start_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_center_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_end_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column_stretch">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_stretch_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column_baseline">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_baseline_column"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_values" id="pnl_flex_justify_column">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Justify</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_justify_content_column_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_start_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_center_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_end_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column_space-around">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_around_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column_space-between">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_between_column"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column_space-evenly">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_evenly_column"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-column-rev-setting  -->
+                            <div id="pnl_flex_dir_settings_column-reverse" style="display: none;">
+                                <div class="item_values" id="pnl_flex_align_column_rev">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Align</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_align_items_column-reverse_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_start_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column-reverse_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_center_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column-reverse_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_end_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column-reverse_stretch">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_stretch_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_align_items_column-reverse_baseline">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_align_items_baseline_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item_values" id="pnl_flex_justify_column_reverse">
+                                    <div class="property_item_vertical sb">
+                                        <div class="property_label">Justify</div>
+                                        <div class="radio-group">
+                                            <div class="action_icon_radio" id="in_justify_content_column-reverse_start">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_start_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_column-reverse_center">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_center_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio" id="in_justify_content_column-reverse_end">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_end_column_reverse"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_column-reverse_space-around">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_around_column_reverse">
+                                                    </use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_column-reverse_space-between">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_between_column_reverse">
+                                                    </use>
+                                                </svg>
+                                            </div>
+                                            <div class="action_icon_radio"
+                                                id="in_justify_content_column-reverse_space-evenly">
+                                                <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                    <use href="#ic_justify_content_space_evenly_column_reverse">
+                                                    </use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-row-wrap-setting  -->
+                            <div class="item_values" id="pnl_flex_warp_row" style="display: none;">
+                                <div class="property_item_vertical sb">
+                                    <div class="property_label">Wrap</div>
+                                    <div class="radio-group">
+                                        <div class="action_icon_radio" id="in_flex_wrap_row_nowrap">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_nowrap_row"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="action_icon_radio" id="in_flex_wrap_row_wrap">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_wrap_row"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-col-wrap-setting  -->
+                            <div class="item_values" id="pnl_flex_warp_column" style="display: none;">
+                                <div class="property_item_vertical sb">
+                                    <div class="property_label">Wrap</div>
+                                    <div class="radio-group">
+                                        <div class="action_icon_radio" id="in_flex_wrap_column_nowrap">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_nowrap_col"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="action_icon_radio" id="in_flex_wrap_column_wrap">
+                                            <svg class="icon-14 icon-fill" style="pointer-events: none;">
+                                                <use href="#ic_flex_wrap_col"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  flex-gap-setting  -->
+                            <div class="item_values" id="pnl_flex_gap">
+                                <div class="property_item sb">
+                                    <div class="property_label">Gap</div>
+                                    <div class="property_item">
+                                        <input type="range" id="gapSlider" class="custom-slider" value="16" max="100"
+                                            step="1" />
+                                        <div class="input_dd">
+                                            <input name="size_width" type="text" value="" class="m_input inspecta_input"
+                                                id="in_gap" ; />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!--------------------------------------------- pnl size --------------------------------------------->
+                <div class="pnl_item" id="size">
+                    <div class="pnl_item_header" id="pnl_size_header">
+                        <div class="item_label">Size</div>
+                        <div class="flex-h-sb gap-m">
+                            <div id="pnl_size_header_values" class="flex-h-sb gap-s">
+                                <div class="item_actions minmax-label" id="in_min">Min</div>
+                                <div class="item_actions minmax-label" id="in_max">Max</div>
+                            </div>
+                            <svg class="icon-16 icon-fill expand">
+                                <use href="#ic_chevron_down"></use>
+                            </svg>
+                        </div>
+
+                    </div>
+                    <div id="pnl_size_values">
+                        <div class="item_values">
+                            <div class="property_item">
+
+                                <div class="input_dd">
+                                    <div class="property_label">W</div>
+                                    <input name="size_width" type="text" value="" class="inspecta_input input_value_end"
+                                        id="in_width" ; />
+                                </div>
+
+                                <div class="input_dd">
+                                    <div class="property_label">H</div>
+                                    <input name="size_height" type="text" value=""
+                                        class="inspecta_input input_value_end" id="in_height" ; />
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item">
+
+                                <div class="input_dd">
+                                    <div class="property_label">Min-W</div>
+                                    <input name="size_min_width" type="text" value=""
+                                        class="inspecta_input input_value_end" id="in_min_width" ; />
+                                </div>
+
+                                <div class="input_dd">
+                                    <div class="property_label">Min-H</div>
+                                    <input name="size_min_height" type="text" value=""
+                                        class="inspecta_input input_value_end" id="in_min_height" ; />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item">
+
+                                <div class="input_dd">
+                                    <div class="property_label">Max-W</div>
+                                    <input name="size-max-width" type="text" value=""
+                                        class="inspecta_input input_value_end" id="in_max_width" ; />
+                                </div>
+
+                                <div class="input_dd">
+                                    <div class="property_label">Max-H</div>
+                                    <input name="size-max-height" type="text" value=""
+                                        class="inspecta_input input_value_end" id="in_max_height" ; />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--------------------------------------------- pnl background --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_background_header">
+                        <div class="item_label">Background</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+
+                        <!-- <div class="selection_dd" id="pnl_background_header_values">
+                        <div class="item_actions">Solid</div>
+                        <svg class="icon-16 icon-fill">
+                            <use  href="#ic_dd"></use>
+                        </svg>
+                    </div> -->
+                    </div>
+
+                    <div class="item_values" id="pnl_background_values">
+                        <div class="property_item_vertical sb">
+                            <div class="property_label">Background Color</div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="color_thumb" id="in_bg_color"></div>
+                                    <input name="txtId" type="text" class="inspecta_input" value="" id="in_bg_color_hex"
+                                        ; />
+                                    <input name="bg-opac" type="number" value="" class="inspecta_input"
+                                        id="in_bg_color_opac" ; />
+                                    <div class="value_type value_type_prec">%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--------------------------------------------- pnl typography --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_typography_header">
+                        <div class="item_label">Typography</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+
+                    <div id="pnl_typography_values">
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Font Family</div>
+                                <div class="property_item">
+                                    <!-- <svg class="icon-16 icon-fill">
+                                <use href="#ic_font"></use>
+                            </svg> -->
+                                    <div id="font-family-selector-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Font Weight</div>
+                                <div class="select-wrapper">
+                                    <select name="in_font_weight" id="in_font_weight" class="select-box">
+                                        <option value="100">Thin : 100</option>
+                                        <option value="200">Extra Light : 200</option>
+                                        <option value="300">Light : 300</option>
+                                        <option value="400">Regular : 400</option>
+                                        <option value="500">Medium : 500</option>
+                                        <option value="600">Semi Bold : 600</option>
+                                        <option value="700">Bold : 700</option>
+                                        <option value="800">Extra Bold : 800</option>
+                                        <option value="900">Black : 900</option>
+                                    </select>
+                                    <svg class="icon-16 icon-fill select-arrow">
+                                        <use href="#ic_dd"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Font Size</div>
+                                <div class="selection_dd">
+                                    <div class="property_item">
+                                        <div class="input_dd">
+                                            <input name="txtId" type="text" value="Normal"
+                                                class="m_input inspecta_input" id="in_font_size" ; />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Font Color</div>
+                                <div class="property_item">
+                                    <div class="input_dd">
+                                        <div class="color_thumb" id="in_font_color"></div>
+                                        <input name="txtId" type="text" class="inspecta_input" value=""
+                                            id="in_font_color_hex" ; />
+                                        <input name="color-opac" type="number" value="" class="inspecta_input"
+                                            id="in_font_color_opac" ; />
+                                        <div class="value_type value_type_prec">%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Line Height</div>
+                                <div class="property_item">
+                                    <div class="input_dd">
+                                        <div class="action_icon_static">
+                                            <svg class="icon-16 icon-fill">
+                                                <use href="#ic_line_h"></use>
+                                            </svg>
+                                        </div>
+                                        <input name="txtId" type="text" value="Normal" class="inspecta_input"
+                                            id="in_line_height" ; />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Letter Spacing</div>
+                                <div class="property_item">
+                                    <div class="input_dd">
+                                        <div class="action_icon_static">
+                                            <svg class="icon-16 icon-fill">
+                                                <use href="#ic_l_spacing"></use>
+                                            </svg>
+                                        </div>
+                                        <input name="txtId" type="text" value="" class="inspecta_input"
+                                            id="in_letter_spacing" ; />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Text Align</div>
+                                <div class="radio-group">
+                                    <div class="action_icon_radio" id="in_txt_align_left">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_ta_left"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_txt_align_center">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_ta_center"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_txt_align_right">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_ta_right"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_txt_align_justify">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_ta_justify"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Text Decoration</div>
+                                <div class="radio-group">
+                                    <div class="action_icon_radio" id="in_txt_decoration_none">
+                                        <span style="font-size: 11px; color: var(--in-color-text-1);">None</span>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_txt_underline">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_underline"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_txt_line_through">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_line_through"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--------------------------------------------- pnl spacing --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_spacing_header">
+                        <div class="item_label">Spacing</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div class="spacing-frame item_values" id="pnl_spacing_values">
+                        <div class="frame-margin">
+                            <span class="small_label">MARGIN</span>
+                            <div class="input_dd input_m_top ">
+                                <input name="margin-top" type="text" value="" class="sm_input inspecta_input" id="in_mt"
+                                    ; />
+                                <!-- <div class="value_type">PX</div> -->
+                            </div>
+                            <div class="input_dd input_m_bottom ">
+                                <input name="margin-bottom" type="text" value="" class="sm_input inspecta_input"
+                                    id="in_mb" ; />
+                                <!-- <div class="value_type">PX</div> -->
+                            </div>
+                            <div class="input_dd input_m_right ">
+                                <input name="margin-right" type="text" value="" class="sm_input inspecta_input"
+                                    id="in_mr" ; />
+                                <!-- <div class="value_type">PX</div> -->
+                            </div>
+                            <div class="input_dd input_m_left ">
+                                <input name="margin-left" type="text" value="" class="sm_input inspecta_input"
+                                    id="in_ml" ; />
+                                <!-- <div class="value_type">PX</div> -->
+                            </div>
+                            <div class="frame-padding">
+                                <span class="small_label">PADDING</span>
+                                <div class="input_dd input_p_top ">
+                                    <input name="padding-top" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pt" ; />
+                                    <!-- <div class="value_type">PX</div> -->
+                                </div>
+                                <div class="input_dd input_p_bottom ">
+                                    <input name="padding-bottom" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pb" ; />
+                                    <!-- <div class="value_type">PX</div> -->
+                                </div>
+                                <div class="input_dd input_p_right ">
+                                    <input name="padding-right" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pr" ; />
+                                    <!-- <div class="value_type">PX</div> -->
+                                </div>
+                                <div class="input_dd input_p_left ">
+                                    <input name="padding-left" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pl" ; />
+                                    <!-- <div class="value_type">PX</div> -->
+                                </div>
+                                <div class="frame-object"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--------------------------------------------- pnl border --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_border_header">
+                        <div class="item_label">Border</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div id="pnl_border_values">
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Border Type</div>
+                                <div class="radio-group">
+                                    <div class="action_icon_radio" id="in_border_style_none">
+                                        <span style="font-size: 11px; color: var(--in-color-text-1);">None</span>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_border_style_solid">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_border_solid"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_border_style_dashed">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_border_dashed"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="in_border_style_dotted">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_border_dotted"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Border Color</div>
+                                <div class="property_item">
+                                    <div class="input_dd">
+                                        <div class="color_thumb" id="in_border_color"></div>
+                                        <input name="txtId" type="text" class="inspecta_input" value=""
+                                            id="in_border_color_hex" ; />
+                                        <input name="border-opac" type="number" value="" class="inspecta_input"
+                                            id="in_border_color_opac" ; />
+                                        <div class="value_type value_type_prec">%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Border Width</div>
+                                <div class="property_item">
+                                    <div class="input_dd">
+                                        <div class="action_icon_static">
+                                            <svg class="icon-16 icon-fill">
+                                                <use href="#ic_border_width"></use>
+                                            </svg>
+                                        </div>
+                                        <input name="border" type="text" value="" class="inspecta_input" id="in_bc" ; />
+                                        <label name="border" class="inspecta_input" id="in_bc_mixed"
+                                            style="display: none;padding-top:8px;cursor: text;">Mixed</label>
+                                    </div>
+                                    <div class="action_icon_medium icon_selected" id="btn_border_link">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_borders"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values" id="border_solo">
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_border_left"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="" type="text" value=" " class="inspecta_input" id="in_bl" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_border_top"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="" type="text" value=" " class="inspecta_input" id="in_bt" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_border_right"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="" type="text" value=" " class="inspecta_input" id="in_br" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_border_bottom"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="" type="text" value=" " class="inspecta_input" id="in_bb" ; />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item_values mt12">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Border-radius (Corners)</div>
+                                <div class="property_item">
+                                    <input type="range" id="radiusSlider" class="custom-slider" value="0" max="100"
+                                        step="1" />
+                                    <div class="input_dd">
+                                        <div class="action_icon_static">
+                                            <svg class="icon-16 icon-fill">
+                                                <use href="#ic_radius"></use>
+                                            </svg>
+                                        </div>
+                                        <input name="border_radius" type="text" value="" class="inspecta_input"
+                                            id="in_radius" ; />
+                                        <label name="border_radius" class="inspecta_input" id="in_radius_mixed"
+                                            style="display: none;padding-top:8px;cursor: text;">Mixed</label>
+                                    </div>
+                                    <div class="action_icon_medium icon_selected" id="btn_radius_link">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_individual_corner"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values" id="radius_solo">
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_radius_top_left"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="radius_tl" type="text" value="" class="inspecta_input"
+                                        id="in_radius_tl" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_radius_top_right"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="radius_tr" type="text" value="" class="inspecta_input"
+                                        id="in_radius_tr" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_radius_bottom_right"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="radius_br" type="text" value="" class="inspecta_input"
+                                        id="in_radius_br" ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="action_icon_static">
+                                        <svg class="icon-16 icon-fill">
+                                            <use href="#ic_radius_bottom_left"></use>
+                                        </svg>
+                                    </div>
+                                    <input name="radius_bl" type="text" value="" class="inspecta_input"
+                                        id="in_radius_bl" ; />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--------------------------------------------- pnl position --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_position_header">
+                        <div class="item_label">Position</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div id="pnl_position_values">
+                        <div class="item_values">
+                            <div class="property_item_vertical sb">
+                                <div class="property_label">Position type</div>
+                                <div class="select-wrapper">
+                                    <select name="in_position" id="in_position" class="select-box fw">
+                                        <option value="static">Static</option>
+                                        <option value="absolute">Absolute</option>
+                                        <option value="fixed">Fixed</option>
+                                        <option value="relative">Relative</option>
+                                        <option value="sticky">Sticky</option>
+                                    </select>
+                                    <svg class="icon-16 icon-fill select-arrow">
+                                        <use href="#ic_dd"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item_values" id="pnl_absolute_position_values">
+                            <div class="property_item_vertical sb">
+                                <div class="radio-group">
+                                    <div class="action_icon_radio" id="pos_tl">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_tl"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_tr">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_tr"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_br">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_br"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_bl">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_bl"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_center">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_center"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_t">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_t"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_r">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_r"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_b">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_b"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="action_icon_radio" id="pos_l">
+                                        <svg class="icon-16 icon-fill" style="pointer-events: none;">
+                                            <use href="#ic_absolute_l"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-spacing-frame item_values" id="pnl_absolute_poisition_spacing_values">
+                            <div class="frame-position">
+                                <div class="input_dd input_m_top ">
+                                    <input name="position-top" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pos_mt" ; />
+                                </div>
+                                <div class="input_dd input_m_bottom ">
+                                    <input name="position-bottom" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pos_mb" ; />
+                                </div>
+                                <div class="input_dd input_m_right ">
+                                    <input name="position-right" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pos_mr" ; />
+                                </div>
+                                <div class="input_dd input_m_left ">
+                                    <input name="position-left" type="text" value="" class="sm_input inspecta_input"
+                                        id="in_pos_ml" ; />
+                                </div>
+                                <div class="frame-object"></div>
+                            </div>
+                        </div>
+                        <div class="item_values sb" id="pnl_z_index">
+                            <div class="property_item_vertical sb">
+                                <div class=" property_label">Z-Index</div>
+                                <input name="z_index" type="text" value="" class="inspecta_input" id="in_z_index" />
+                            </div>
+                        </div>
+                        <div class="item_values" id="relative_to">
+                            <div class="property_item_vertical sb">
+                                <div class=" property_label">Relative to:</div>
+                                <div id="realative_parent">Parent</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--------------------------------------------- pnl box shadow --------------------------------------------->
+
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_box_shadow_header">
+                        <div class="item_label">Box shadow</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div id="pnl_box_shadow_values">
+                        <div class="item_values">
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="color_thumb" id="in_bxsdc"></div>
+                                    <input name="txtId" type="text" class="inspecta_input" value="" id="in_bxsh_hex"
+                                        ; />
+                                    <input name="shadow-opac" type="number" value="" class="inspecta_input"
+                                        id="in_bxsh_opac" ; />
+                                    <div class="value_type value_type_prec">%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_values">
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="property_label">X</div>
+                                    <input name="txtId" type="number" value="" class="inspecta_input" id="in_bxsh_x"
+                                        ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="property_label">Y</div>
+                                    <input name="txtId" type="number" value="" class="inspecta_input" id="in_bxsh_y"
+                                        ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="property_label">B</div>
+                                    <input name="txtId" type="number" value="" class="inspecta_input" id="in_bxsh_blur"
+                                        ; />
+                                </div>
+                            </div>
+                            <div class="property_item">
+                                <div class="input_dd">
+                                    <div class="property_label">S</div>
+                                    <input name="txtId" type="number" value="" class="inspecta_input"
+                                        id="in_bxsh_spread" ; />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--------------------------------------------- pnl opacity --------------------------------------------->
+                <div class="pnl_item">
+                    <div class="pnl_item_header" id="pnl_opac_header">
+                        <div class="item_label">Opacity</div>
+                        <svg class="icon-16 icon-fill expand">
+                            <use href="#ic_chevron_down"></use>
+                        </svg>
+                    </div>
+                    <div id="pnl_opac_values">
+                        <div class="item_values">
+                            <div class="property_item">
+                                <div class="property_label">Opacity</div>
+                                <input type="range" id="opacitySlider" class="custom-slider" value="100" max="100"
+                                    step="1" />
+                                <div class="input_dd">
+                                    <input name="el-opac" type="number" value="" class="s_input inspecta_input"
+                                        id="in_el_opac" min="0" max="100" step="1" />
+                                    <div class="value_type value_type_prec">%</div>
+                                </div>
+                                <!-- <div class="input_group">
+                                    <input name="" type="number" class="s_input inspecta_input" value="" id="in_el_opac" />
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------------------- pnl css filters & blend modes --------------------------------------------->
+<div class="pnl_item" id="css_filters">
+    <div class="pnl_item_header" id="pnl_filters_header">
+        <div class="item_label">Filters & Blend</div>
+        <svg class="icon-16 icon-fill expand">
+            <use href="#ic_chevron_down"></use>
+        </svg>
+    </div>
+    <div class="item_values" id="pnl_filters_values">
+        <div class="property_item_vertical sb">
+            <div class="property_label">Selector</div>
+            <input type="text" class="inspecta_input" id="inspecta_filter_selector" value="body" placeholder="CSS selector" />
+        </div>
+        
+        <div class="property_item_vertical sb">
+            <div class="property_label">Blend Mode</div>
+            <select class="inspecta_input" id="inspecta_blend_mode">
+                <option value="normal">normal</option>
+                <option value="multiply">multiply</option>
+                <option value="screen">screen</option>
+                <option value="overlay">overlay</option>
+                <option value="darken">darken</option>
+                <option value="lighten">lighten</option>
+                <option value="color-dodge">color-dodge</option>
+                <option value="color-burn">color-burn</option>
+                <option value="hard-light">hard-light</option>
+                <option value="soft-light">soft-light</option>
+                <option value="difference">difference</option>
+                <option value="exclusion">exclusion</option>
+                <option value="hue">hue</option>
+                <option value="saturation">saturation</option>
+                <option value="color">color</option>
+                <option value="luminosity">luminosity</option>
+            </select>
+        </div>
+
+        <div class="filters-controls">
+            <!-- Blur -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Blur</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="50" value="0" class="custom-slider filter-slider" data-filter="blur" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="blur" value="0px" />
+                </div>
+            </div>
+
+            <!-- Brightness -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Brightness</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="300" value="100" class="custom-slider filter-slider" data-filter="brightness" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="brightness" value="100%" />
+                </div>
+            </div>
+
+            <!-- Contrast -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Contrast</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="300" value="100" class="custom-slider filter-slider" data-filter="contrast" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="contrast" value="100%" />
+                </div>
+            </div>
+
+            <!-- Saturate -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Saturate</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="300" value="100" class="custom-slider filter-slider" data-filter="saturate" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="saturate" value="100%" />
+                </div>
+            </div>
+
+            <!-- Hue Rotate -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Hue Rotate</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="360" value="0" class="custom-slider filter-slider" data-filter="hueRotate" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="hueRotate" value="0deg" />
+                </div>
+            </div>
+
+            <!-- Sepia -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Sepia</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="100" value="0" class="custom-slider filter-slider" data-filter="sepia" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="sepia" value="0%" />
+                </div>
+            </div>
+
+            <!-- Grayscale -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Grayscale</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="100" value="0" class="custom-slider filter-slider" data-filter="grayscale" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="grayscale" value="0%" />
+                </div>
+            </div>
+
+            <!-- Invert -->
+            <div class="property_item_vertical sb filter-control">
+                <div class="property_label">Invert</div>
+                <div class="property_item">
+                    <input type="range" min="0" max="100" value="0" class="custom-slider filter-slider" data-filter="invert" />
+                    <input type="text" class="s_input inspecta_input filter-value" data-filter="invert" value="0%" />
+                </div>
+            </div>
+        </div>
+
+        <div class="filters-actions">
+            <button type="button" class="btn_medium btn_primary" id="inspecta_filters_apply">Apply Filters</button>
+            <button type="button" class="btn_medium btn_secondary" id="inspecta_filters_clear">Clear All</button>
+        </div>
+    </div>
+</div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--------------------------------------------- pnl changes --------------------------------------------->
+    <div id="pnl_changes">
+        <div class="pnl_toolbar">
+            <div id="css_changes_counter"></div>
+            <div class="flex-h-sb gap-xs">
+                <div class="action_icon" id="changes_action_export_to_file">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_export"></use>
+                    </svg>
+                </div>
+                <div class="action_icon" id="changes_action_copy_to_clipboard">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_clipboard"></use>
+                    </svg>
+                </div>
+                <div class="action_icon" id="changes_action_copy_all_to_ai">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_ai"></use>
+                    </svg>
+                </div>
+                <div class="action_icon" id="changes_action_send_to_cursor">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_cursor"></use>
+                    </svg>
+                </div>
+                <div class="action_icon" id="changes_action_delete">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_delete"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------------------- AI Agent Bridge Panel --------------------------------------------->
+        <div class="pnl_item">
+            <div class="pnl_item_header" id="ai_agent_bridge_header">
+                <div class="item_label">
+                    <span>AI agent bridge</span>
+                    <div class="connection-status">
+                        <div class="status-indicator" id="ai_bridge_status_indicator"></div>
+                        <span id="ai_bridge_status_text">Disconnected</span>
+                        <svg class="icon-16 icon-fill refresh-icon" id="ai_bridge_refresh_icon" style="display: none;">
+                            <use href="#ic_refresh"></use>
+                        </svg>
+                    </div>
+                </div>
+                <svg class="icon-16 icon-fill expand">
+                    <use href="#ic_chevron_down"></use>
+                </svg>
+            </div>
+            <div class="item_values" id="ai_agent_bridge_content">
+                <div class="ide-info">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_cursor"></use>
+                    </svg>
+                    <span>Cursor IDE</span>
+                </div>
+                <button type="button" class="btn_medium" id="ai_agent_setup_guide">Setup guide</button>
+            </div>
+        </div>
+
+        <div id="pnl_changes_content" data-simplebar>
+            <div id="css_changes_hint">
+                <svg class="icon-36">
+                    <use href="#ic__changes_hint"></use>
+                </svg>
+                <span>No CSS changes</span>
+            </div>
+            <div class="full">
+                <div id="full_css_content" class="full_css_content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------- Setup Guide Popup --------------------------------------------->
+    <div id="setup-guide-popup" class="popup-overlay" style="display: none;">
+        <div class="setup-popup-content">
+            <div class="setup-popup-header">
+                <div class="header-image-container">
+                    <img src="" alt="Cursor Setup" class="header-image">
+                </div>
+                <button class="setup-popup-close" id="setup-popup-close">
+                    <svg class="icon-16">
+                        <use href="#ic_close"></use>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="setup-popup-body">
+                <div class="title-section">
+                    <div class="title-icon">
+                        <svg class="icon-20">
+                            <use href="#ic_cursor"></use>
+                        </svg>
+                    </div>
+                    <h2 class="setup-popup-title">Send CSS changes to Cursor (Localhost) </h2>
+                </div>
+
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <div class="step-number">1</div>
+                        <p class="step-text">
+                            <a href="https://inspecta.design/inspecta-ide-integration-1.0.0.vsix" class="download-link"
+                                target="_blank">Download the Cursor extension</a>
+                        </p>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-number">2</div>
+                        <p class="step-text">
+                            Press <strong>Cmd + Shift + P</strong> (on Mac) or <strong>Ctrl + Shift + P</strong> (on
+                            Windows/Linux).<br>
+                            Type "Install from VSIX..." and select the
+                            <strong>inspecta-ide-integration-1.0.0.vsix</strong>
+                        </p>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+
+                        <div class="step-column-container">
+                            <p class="step-text">
+                                Once installed, <strong>click to open</strong> inspecta server on your IDE bottom
+                                toolbar
+                            </p>
+                            <div class="code-example">
+                                <div class="code-text">Inspecta: Closed (click to Open)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <p class="step-text">
+                            On inspecta, make CSS changes and click "<strong>Send to Cursor</strong>" from the element
+                            toolbar or from css changes panel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------- bottom-tabs (not in use) --------------------------------------------->
+    <div id="tabs" style="display:none">
+        <div id="tab_properties" class="in-tab tab_selected">
+            <svg class="icon-20  ">
+                <use href="#ic_tab_properties"></use>
+            </svg>
+            <div class="tab-label">properties</div>
+        </div>
+        <div id="tab_overlay" class="in-tab">
+            <svg class="icon-20">
+                <use href="#ic_tab_overlay"></use>
+            </svg>
+            <div class="tab-label">Overlay</div>
+        </div>
+        <div id="tab_changes" class="in-tab">
+            <svg class="icon-20">
+                <use href="#ic_tab_changes"></use>
+            </svg>
+            <div class="tab-label">Changes</div>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------  img overlay popup ---------------------------------->
+<div id="pnl_overlay" class="pnl_overlay_no_image_selected">
+    <!-- <div class="img_over_dimen" id="txt_overlay_image_size">Image overlay</div> -->
+    <div class="over-img_header flex-h-sb">
+
+        <div class="over_pnl_title ">Image overlay</div>
+
+        <!-- remove 2 classes bellow -->
+        <div class="txt_overlay_image_size" id="txt_overlay_image_size" style="display: none;">No image</div>
+        <div class="flex-h-sb gap-m">
+            <div class="over_actions">
+                <div class="action_icon" id="in_paste_img">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_paste_img"></use>
+                    </svg>
+                </div>
+                <div class="action_icon" id="in_upload_img">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_upload_img"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="action_icon" id="btn_img_overlay_close">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_close"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="img_over_name" id="overlay_image_name"></div>
+
+    <div class="flex-h-sb upload-button-box">
+        <div id="over_selected_img">
+
+            <div class="action_icon" id="in_paste_img_hint">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_paste_img"></use>
+                </svg>
+            </div>
+            <div class="action_icon" id="in_upload_img_hint">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_upload_img"></use>
+                </svg>
+            </div>
+
+            <div class="in_over_delete_image hide-delete-image" id="in_over_delete_image">
+                <svg class="icon-16 icon-fill ">
+                    <use href="#ic_delete"></use>
+                </svg>
+
+            </div>
+        </div>
+        <label id="in_upload_paste_image_hint_text">Upload image or paste from clipboard</label>
+        <div class="over_move" id="">
+            <div class="over_nove_row">
+
+                <div class="btn_chevron over_corner" id="over_top_left">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_pin_top_left"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron" id="over_up">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_up"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron over_corner" id="over_top_right">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_pin_top_right"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="over_nove_row">
+                <div class="btn_chevron" id="over_left">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_left"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron over_corner" id="in_overlay_image_center">
+                    <svg class="icon-16  icon-fill">
+                        <use href="#ic_center"></use>
+                    </svg>
+                </div>
+
+                <div class="btn_chevron" id="over_right">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_right"></use>
+                    </svg>
+                </div>
+
+            </div>
+            <div class="over_nove_row">
+                <div class="btn_chevron over_corner" id="over_bottom_left">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_pin_bottom_left"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron" id="over_down">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_chevron_down"></use>
+                    </svg>
+                </div>
+                <div class="btn_chevron over_corner" id="over_bottom_right">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_pin_bottom_right"></use>
+                    </svg>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <input type="range" id="opacitySlider" class="custom-slider" value="50" max="100" step="1" />
+    <div class="over-footer ">
+
+        <div class="over_actions ">
+            <div class="action_icon" id="in_overlay_image_hide_show">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_display_none"></use>
+                </svg>
+            </div>
+            <div class="action_icon" id="in_overlay_image_invert">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_invert"></use>
+                </svg>
+            </div>
+            <div class="action_icon" id="in_overlay_image_lock">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_lock"></use>
+                </svg>
+            </div>
+
+        </div>
+
+        <div class="input_dd">
+            <div class="action_icon" id="in_overlay_image_scale">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_scale"></use>
+                </svg>
+            </div>
+            <input name="scale_img" type="number" step="0.1" class="m_input inspecta_input"
+                id="overlay_device_input_ratio" ; />
+
+        </div>
+        <div class="action_icon" id="in_overlay_image_collapse">
+            <svg class="icon-16 icon-fill">
+                <use href="#ic_chevron_down"></use>
+            </svg>
+        </div>
+        <div class="action_icon" id="in_overlay_image_expand" style="display: none;">
+            <svg class="icon-16 icon-fill">
+                <use href="#ic_chevron_up"></use>
+            </svg>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------  navigator popup ------------------------------------>
+<div id="pnl_navigator" style="display:none;">
+    <div class="navigator-header">
+        <span>Navigator</span>
+        <div class="flex-h-sb gap-xs">
+            <div class="action_icon" id="btn_navigator_collapse">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_collapse_all"></use>
+                </svg>
+            </div>
+            <div class="action_icon" id="btn_navigator_close">
+                <svg class="icon-16 icon-fill">
+                    <use href="#ic_close"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div id="pnl_navigator_dom_tree" data-simplebar></div>
+</div>
+<!---------------------------------------------  bottom toolbar ------------------------------------->
+<div id="bottom_toolbar">
+    <!-- Drag handle for bottom toolbar -->
+    <div class="btn-outer btn_drag_bottom_toolbar" id="btn_drag_bottom_toolbar">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_drag-dots"></use>
+        </svg>
+    </div>
+
+    <div class="btn_inspect_preview_toggle" id="btn_inspect_preview_toggle">
+        <svg class="icon-36 " id="ic_inspect_on">
+            <use href="#ic_inspect_toggle"></use>
+        </svg>
+        <svg class="icon-36" id="ic_inspect_off">
+            <use href="#ic_toolbar_guides"></use>
+        </svg>
+    </div>
+
+    <div class="divider-vertical"></div>
+    <div class="main_actions">
+        <div class="ic_toolbar_action" id="btn_distances">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_guides"></use>
+            </svg>
+            <!-- <div class="ic_toolbar_action_mark"></div> -->
+        </div>
+        <div class="ic_toolbar_action" id="btn_info">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_info"></use>
+            </svg>
+        </div>
+        <div class="ic_toolbar_action" id="btn_ruler">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_ruler"></use>
+            </svg>
+        </div>
+        <div class="ic_toolbar_action" id="btn_outline">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_outline"></use>
+            </svg>
+        </div>
+
+
+
+        <div class="ic_toolbar_action" id="btn_view_overlay">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_overlay"></use>
+            </svg>
+        </div>
+
+        <div class="ic_toolbar_action" id="btn_eye_dropper">
+            <svg class="icon-36 icon-fill">
+                <use href="#ic_toolbar_eye_dropper"></use>
+            </svg>
+        </div>
+        <!-- <div class="ic_toolbar_action" id="btn_eye_isolate">
+        <svg class="icon-36 icon-fill">
+            <use href="#ic_toolbar_isolate"></use>
+        </svg>
+    </div>
+    <div class="ic_toolbar_action" id="btn_camera">
+        <svg class="icon-36 icon-fill">
+            <use href="#ic_toolbar_camera"></use>
+        </svg>
+    </div> -->
+
+    </div>
+    <div class="divider-vertical"></div>
+
+    <div class="toolbar_right">
+
+
+        <div class="toolbar_actions_right">
+            <div class="ic_toolbar_action" id="btn_view_tree_navigator">
+                <svg class="icon-36 icon-fill" id="bottom_toolbar_toggle_fill_navigator">
+                    <use href="#ic_toolbar_navigator"></use>
+                </svg>
+            </div>
+            <div class="ic_toolbar_action" id="btn_toggle_overlay">
+                <svg class="icon-36 icon-fill" id="bottom_toolbar_toggle_fill">
+                    <use href="#ic_toolbar_overlay"></use>
+                </svg>
+            </div>
+
+            <div class="toggle-pnl-btn">
+                <div class="ic_toolbar_action" id="btn_toggle_changes">
+                    <svg class="icon-36 icon-fill" id="bottom_toolbar_toggle_fill_changes">
+                        <use href="#ic_toolbar_changes"></use>
+                    </svg>
+                </div>
+                <div class="ic_toolbar_action fill_active" id="btn_toggle_pnl">
+                    <svg class="icon-36 icon-fill" id="toggle_fill">
+                        <use href="#ic_pnl_prop"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- outside actions -->
+
+    <div class="btn-outer btn_settings" id="btn_settings">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_settings"></use>
+        </svg>
+    </div>
+
+    <div class="btn-outer btn_remove_inspecta" id="btn_remove_inspecta" title="Close Inspecta">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_close"></use>
+        </svg>
+    </div>
+
+    <div class="btn-outer btn_theme" id="btn_theme_light">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_theme_light_small"></use>
+        </svg>
+    </div>
+    <div class="btn-outer btn_theme" id="btn_theme_dark">
+        <svg class="icon-16 icon-fill">
+            <use href="#ic_theme_dark_small"></use>
+        </svg>
+    </div>
+    <!-- <div id="path-navigator"></div> -->
+</div>
+
+<!-- Drop zone outline for bottom toolbar -->
+<div id="bottom_toolbar_drop_zone"></div>
+
+<!---------------------------------------------  settings menu ------------------------------------>
+<div id="settings_menu" class="popup" style="display:none;">
+    <div class="popup-header">
+        <div class="popup-title">Settings</div>
+        <div class="popup-elements-count"></div>
+    </div>
+    <div class="settings-menu-container">
+        <div class="settings-menu-item" id="btn_clear_inspecta_changes">
+            <div class="settings-menu-text">Clear inspecta changes</div>
+        </div>
+
+        <div class="settings-menu-item" id="btn_toggle_spacing_overlays">
+            <div class="settings-menu-text">Show spacing overlays</div>
+            <div class="settings-switch">
+                <input type="checkbox" id="setting_spacing_overlays">
+                <span class="switch-slider"></span>
+            </div>
+        </div>
+
+        <div class="settings-menu-item" id="btn_download_figma_plugin">
+            <div class="settings-menu-text">Download inspecta Figma plugin</div>
+        </div>
+
+        <div class="settings-menu-item" id="btn_theme_toggle">
+            <div class="settings-menu-text">Theme</div>
+            <div class="settings-theme-toggle">
+                <div class="theme-option" id="theme_light">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_theme_light_small"></use>
+                    </svg>
+                </div>
+                <div class="theme-option" id="theme_dark">
+                    <svg class="icon-16 icon-fill">
+                        <use href="#ic_theme_dark_small"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-menu-item" id="btn_report_bug">
+            <div class="settings-menu-text">Report a bug</div>
+        </div>
+
+        <div class="settings-menu-item" id="btn_send_feedback">
+            <div class="settings-menu-text">Suggest a feature</div>
+        </div>
+    </div>
+</div>
